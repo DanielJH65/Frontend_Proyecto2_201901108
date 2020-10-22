@@ -3,7 +3,7 @@ function iniciarSesion() {
     ruta = 'http://localhost:5000/iniciarSesion';
 
     let datos = JSON.stringify({
-        usuario: document.getElementById("usuario").value,
+        usuario: document.getElementById("usuario").value.toUpperCase(),
         contra: document.getElementById("contra").value
     });
 
@@ -25,10 +25,9 @@ function iniciarSesion() {
 }
 
 alerta = function () { };
-alerta.error = function (mensage) {
+alerta.error = function (mensaje) {
     $("#alerta").html(
         '<div class="alert alert-dismissible alert-warning"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
-        mensage +
-        "</h4></div>"
+        mensaje + "</h4></div>"
     );
 };
