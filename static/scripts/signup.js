@@ -41,21 +41,21 @@ function agregarUsuario() {
 alerta = function () { };
 alerta.completo = function (mensaje) {
     $("#alerta").html(
-        '<div class="alert alert-dismissible alert-success"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
+        '<div class="alert my-3 mx-5 alert-dismissible alert-success"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
         mensaje +
         "</h4></div>"
     );
 };
 alerta.error = function (mensaje) {
     $("#alerta").html(
-        '<div class="alert alert-dismissible alert-warning"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
+        '<div class="alert my-3 mx-5 alert-dismissible alert-warning"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
         mensaje +
         "</h4></div>"
     );
 };
 alerta.precaucion = function (mensaje) {
     $("#alerta").html(
-        '<div class="alert alert-dismissible alert-primary"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
+        '<div class="alert my-3 mx-5 alert-dismissible alert-primary"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
         mensaje +
         "</h4></div>"
     );

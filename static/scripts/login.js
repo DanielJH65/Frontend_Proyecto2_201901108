@@ -13,7 +13,15 @@ function iniciarSesion() {
     xhr.onreadystatechange = function() {
 
         if (this.status == 200) {
-            location.href="/templates/usuario.html";
+            var respuesta = xhr.responseText.split(":");
+            var rol = respuesta[2].split('"');
+            var nombre = respuesta[3].split('"');
+            console.log(nombre)
+            if(rol[1] == 'Administrador'){
+                location.href="/templates/admin.html?usuario="+nombre[1];
+            }else{
+                location.href="/templates/usuario.html?usuario="+nombre[1];
+            }            
         }else if (this.status == 400) {
             document.getElementById("usuario").value = "";
             document.getElementById("contra").value = "";
@@ -27,7 +35,7 @@ function iniciarSesion() {
 alerta = function () { };
 alerta.error = function (mensaje) {
     $("#alerta").html(
-        '<div class="alert alert-dismissible alert-warning"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
+        '<div class="alert my-3 mx-5 alert-dismissible alert-warning"><a class="close" data-dismiss="alert">&times;</a><h4 class="alert-heading">' +
         mensaje + "</h4></div>"
     );
 };
