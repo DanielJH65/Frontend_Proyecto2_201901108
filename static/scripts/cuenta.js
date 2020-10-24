@@ -1,8 +1,25 @@
+var user = location.search.substring(1, location.search.length);
+var users = user.split("&");
+for (i = 0; i < users.length; i++) {
+    variableActual = users[i].split("=");
+    if (isNaN(parseFloat(variableActual[1])))
+        eval(variableActual[0] + "='" + unescape(variableActual[1]) + "';");
+    else
+        eval(variableActual[0] + "=" + variableActual[1] + ";");
+}
+
 function iniciar() {
-    var user = location.search.substring(1, location.search.length);
-    var users = user.split("=");
-    eval(users[0] + "='" + users[1] + "';");
     inicio(usuario);
+}
+
+function refrescar() {
+    location.href = "/templates/admin.html?usuario=" + usuario;
+}
+function peliculas() {
+    location.href = "/templates/peliculas.html?usuario=" + usuario;
+}
+function modificarPeliculas(titulos) {
+    location.href = "/templates/modificarPelicula.html?usuario=" + usuario + "&tituloA=" + titulos;
 }
 
 inicio = function (usuario1) {
