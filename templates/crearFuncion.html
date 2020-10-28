@@ -17,7 +17,7 @@
     <title>Cine Deluxe</title>
 </head>
 
-<body onload="iniciar() & obtenerPeliculas()">
+<body onload="iniciar()">
     <!------ Barra de Navegación ------>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" onclick="refrescar()">
@@ -32,13 +32,13 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="peliculas()">Peliculas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="">Reseñas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link mb-0 h4" onclick="funciones()">Funciones</a>
                 </li>
                 <li class="nav-item">
@@ -61,24 +61,28 @@
         </div>
     </nav>
     <div id = "alerta"></div>
-    <center>
-        <p class="display-4 my-3" id="titulo">Películas</p>
-    </center>
 
-    <div class="row">
-        <div class="col-sm-5">
-            <button class="btn btn-info btn-lg btn-block mx-5 my-4">Cargar Películas</button>
-        </div>
-        <div class="col-sm-5">
-            <button class="btn btn-secondary btn-lg btn-block mx-5 my-4">Generar Reporte en PDF</button>
-        </div>
-    </div>
-
-    <div class="jumbotron my-3 mx-5">
-        <center><h1 class="display-5">Peliculas Registradas</h1></center>
+    <div class="jumbotron mx-auto my-5 " style="width: 700px;">
+        <h1 class="display-4">Crear Función</h1>
         <hr class="my-4">
-        <div class="mx-5" id="tablaP">
-        </div>
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <label for="pelicula">Pelicula</label>
+                    <input type="text" class="form-control" id="pelicula" placeholder="Pelicula">
+                </div>
+                <div class="form-group">
+                    <label for="sala">Sala</label>
+                    <input type="text" class="form-control" id="sala" placeholder="Sala">
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Hora</label>
+                    <input type="time" class="form-control" id="hora">
+                </div>
+                <a type="submit" class="btn btn-success  btn-lg" onclick="agregarFuncion()">Crear Función</a><br>
+
+            </fieldset>
+        </form>
     </div>
 </body>
 

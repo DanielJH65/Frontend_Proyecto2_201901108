@@ -1,4 +1,4 @@
-function agregarUsuario() {
+function agregarUsuario(tipo) {
 
     let xhr = new XMLHttpRequest();
     var ruta = "http://localhost:5000/crearUsuario";
@@ -11,7 +11,7 @@ function agregarUsuario() {
             apellido: document.getElementById("apellido").value,
             usuario: document.getElementById("usuario").value.toUpperCase(),
             contra: document.getElementById("contra").value,
-            rol: "cliente",
+            rol: tipo,
         });
 
         xhr.open("POST", ruta, true);

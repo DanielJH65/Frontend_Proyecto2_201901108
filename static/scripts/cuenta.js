@@ -21,6 +21,18 @@ function peliculas() {
 function modificarPeliculas(titulos) {
     location.href = "/templates/modificarPelicula.html?usuario=" + usuario + "&tituloA=" + titulos;
 }
+function funciones(){
+    location.href = "/templates/funcionesAdmin.html?usuario=" + usuario;
+}
+function creaFuncion(){
+    location.href = "/templates/crearFuncion.html?usuario=" + usuario;
+}
+function usuarios(){
+    location.href = "/templates/usuarios.html?usuario=" + usuario;
+}
+function crearUsuarioAdmin(){
+    location.href = "/templates/crearUsuarioAdmin.html?usuario=" + usuario;
+}
 
 inicio = function (usuario1) {
     $("#perfil").html(

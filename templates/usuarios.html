@@ -17,7 +17,7 @@
     <title>Cine Deluxe</title>
 </head>
 
-<body onload="iniciar() & obtenerPeliculas()">
+<body onload="iniciar() & obtenerUsuarios()">
     <!------ Barra de Navegación ------>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" onclick="refrescar()">
@@ -62,22 +62,17 @@
     </nav>
     <div id = "alerta"></div>
     <center>
-        <p class="display-4 my-3" id="titulo">Películas</p>
+        <p class="display-4 my-3" id="titulo">Usuarios</p>
     </center>
 
-    <div class="row">
-        <div class="col-sm-5">
-            <button class="btn btn-info btn-lg btn-block mx-5 my-4">Cargar Películas</button>
-        </div>
-        <div class="col-sm-5">
-            <button class="btn btn-secondary btn-lg btn-block mx-5 my-4">Generar Reporte en PDF</button>
-        </div>
+    <div class="row mx-5">
+        <button class="btn btn-info btn-lg btn-block mx-5 my-4">Generar Reporte PDF</button>
     </div>
 
     <div class="jumbotron my-3 mx-5">
-        <center><h1 class="display-5">Peliculas Registradas</h1></center>
+        <center><h1 class="display-5">Usuarios Registrados</h1></center>
         <hr class="my-4">
-        <div class="mx-5" id="tablaP">
+        <div class="mx-5" id="tablaU">
         </div>
     </div>
 </body>
