@@ -12,13 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-    <script src="../static/scripts/signup.js"></script>
     <script src="../static/scripts/cuenta.js"></script>
     <script src="../static/scripts/admin.js"></script>
     <title>Cine Deluxe</title>
 </head>
 
-<body onload="iniciar()">
+<body onload="iniciar() & obtenerResena()">
     <!------ Barra de Navegación ------>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" onclick="refrescar()">
@@ -36,7 +35,7 @@
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="peliculas()">Peliculas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link mb-0 h4" onclick="resenasAdmin('')">Reseñas</a>
                 </li>
                 <li class="nav-item">
@@ -45,7 +44,7 @@
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="usuarios()">Usuarios</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="crearUsuarioAdmin()">Registrar Usuario</a>
                 </li>
             </ul>
@@ -61,36 +60,19 @@
             </ul>
         </div>
     </nav>
-    <div id = "alerta"></div>
+    <div id="alerta"></div>
 
-    <div class="jumbotron mx-auto my-5 " style="width: 700px;">
-        <h1 class="display-4">Registro de Usuario</h1>
+    <div id="peliResena">
+        
+    </div>
+
+    <div class="jumbotron my-5 mx-5">
+        <center>
+            <h1 class="display-5">Reseñas Registradas</h1>
+        </center>
         <hr class="my-4">
-        <form>
-            <fieldset>
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
-                </div>
-                <div class="form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" placeholder="Apellido">
-                </div>
-                <div class="form-group">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
-                </div>
-                <div class="form-group">
-                    <label for="contra">Contraseña</label>
-                    <input type="password" class="form-control" id="contra" placeholder="Contraseña">
-                </div>
-                <div class="form-group">
-                    <label for="confirmcontra">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="confirmcontra" placeholder="Contraseña">
-                </div>
-                <a type="submit" class="btn btn-success  btn-lg" onclick="agregarUsuario('Administrador')">Crear Usuario</a><br>
-            </fieldset>
-        </form>
+        <div class="mx-5" id="tablaR">
+        </div>
     </div>
 </body>
 

@@ -8,7 +8,7 @@ for (i = 0; i < users.length; i++) {
         eval(variableActual[0] + "=" + variableActual[1] + ";");
 }
 
-function obtenerPeliculas(){
+function obtenerPeliculas() {
     var codigoTabla = '<table class="table table-hover">' +
         '<thead>' +
         '<tr class="table-light">' +
@@ -100,7 +100,7 @@ function modificarPelicula() {
     req.send(datos);
 }
 
-function obtenerFunciones(){
+function obtenerFunciones() {
     var codigoTabla = '<table class="table table-hover">' +
         '<thead>' +
         '<tr class="table-light">' +
@@ -129,8 +129,8 @@ function obtenerFunciones(){
                 codigoTabla += '<td>' + funciones[i].sala + '</td>'
                 codigoTabla += '<td>' + funciones[i].hora + '</td>'
                 codigoTabla += '<td>' + funciones[i].disponible + '</td>'
-                codigoTabla += '<td>' +  + '</td>'
-                codigoTabla += '<td>' +  + '</td>'
+                codigoTabla += '<td>' + + '</td>'
+                codigoTabla += '<td>' + + '</td>'
                 codigoTabla += '<td><a class="btn btn-warning" onclick="eliminar('
                 codigoTabla += "'"
                 codigoTabla += funciones[i].pelicula
@@ -166,7 +166,7 @@ function agregarFuncion() {
     req.send(datos);
 }
 
-function obtenerUsuarios(){
+function obtenerUsuarios() {
     var codigoTabla = '<table class="table table-hover">' +
         '<thead>' +
         '<tr class="table-light">' +
@@ -200,6 +200,92 @@ function obtenerUsuarios(){
     }
 }
 
+function obtenerResena() {
+    let xhr = new XMLHttpRequest();
+    var ruta = 'http://localhost:5000/obtenerPeliculas';
+    xhr.open('GET', ruta);
+    xhr.send();
+
+    xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
+            var peliculas = JSON.parse(xhr.responseText);
+            var html = ''
+            if (tituloA == "") {
+                html += '<div class="row mx-5 my-5">'
+                html += '<div class="form-group" style="width:100%">'
+                html += '<select class="custom-select" id="selectPelicula" onchange="seleccion()">'
+                html += '<option selected="">Seleccione una Pelicula...</option>'
+                for (var i = 0; i < peliculas.length; i++) {
+                    html += '<option value="' + peliculas[i].titulo + '">' + peliculas[i].titulo + '</option>'
+                }
+                html += '</select>'
+                html += '</div>'
+            } else {
+                html += '<div class="row mx-5 my-5">'
+                html += '<div class="form-group" style="width:100%">'
+                html += '<select class="custom-select" id="selectPelicula" onchange="seleccion()">'
+                html += '<option selected="">Seleccione una Pelicula...</option>'
+                for (var i = 0; i < peliculas.length; i++) {
+                    html += '<option value="' + peliculas[i].titulo + '">' + peliculas[i].titulo + '</option>'
+                }
+                html += '</select>'
+                html += '</div>'
+                html += '<center><p class="display-4 my-3" id="titulo">' + tituloA + '</p></center>'
+                html += '<table class="table table-hover">' +
+                    '<thead>' +
+                    '<tr class="table-light">' +
+                    '<th scope="col">Usuario</th>' +
+                    '<th scope="col">Reseña</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
+
+                for (var i = 0; i < peliculas.length; i++) {
+                    if (peliculas[i].titulo == tituloA) {
+                        for (var j = 0; j < peliculas[i].resenas.length; j++) {
+                            html += '<tr>'
+                            html += '<td>' + peliculas[i].resenas[j].usuario + '</td>'
+                            html += '<td>' + peliculas[i].resenas[j].texto + '</td>'
+                            html += '</tr>'
+                        }
+                    }
+                }
+                html += '</tbody></table>'
+            }
+            resenas3(html)
+        }
+    }
+}
+
+var cargarArchivo = function (event) {
+    var archivo = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var datos = reader.result;
+        console.log(datos)
+        let req = new XMLHttpRequest();
+        let datos2 = JSON.stringify({
+            contenido: datos,
+        })
+        req.open('POST', 'http://localhost:5000/cargaMasiva', true);
+        req.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        req.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
+                alerta.completo("Carga creada Correctamente")
+            } else {
+                alerta.error("Error, no se creo")
+            }
+        };
+        req.send(datos2);
+    };
+    reader.readAsText(archivo.files[0])
+};
+
+function seleccion() {
+    var pelicula = document.getElementById("selectPelicula").value;
+    resenasAdmin(pelicula)
+}
+
 function modificar(titulos) {
     modificarPeliculas(titulos);
 }
@@ -213,6 +299,9 @@ tabla.funciones = function (codigo) {
 }
 tabla.usuarios = function (codigo) {
     $("#tablaU").html(codigo);
+}
+resenas3 = function (codigo) {
+    $("#tablaR").html(codigo);
 }
 
 alerta = function () { };

@@ -36,7 +36,7 @@
                     <a class="nav-link mb-0 h4" onclick="peliculas()">Peliculas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mb-0 h4" onclick="">Reseñas</a>
+                    <a class="nav-link mb-0 h4" onclick="resenasAdmin('')">Reseñas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="funciones()">Funciones</a>
@@ -67,13 +67,16 @@
 
     <div class="row">
         <div class="col-sm-5">
-            <button class="btn btn-info btn-lg btn-block mx-5 my-4">Cargar Películas</button>
+            <div class="custom-file mx-5 my-4">
+                <input type="file" accept="text/plain" onchange="cargarArchivo(event)" class="custom-file-input" id="cargaMasiva" >
+                <label class="custom-file-label" for="cargaMasiva">Cagar Peliculas</label>
+            </div>
         </div>
         <div class="col-sm-5">
             <button class="btn btn-secondary btn-lg btn-block mx-5 my-4">Generar Reporte en PDF</button>
         </div>
     </div>
-
+    <div id="datos"></div>
     <div class="jumbotron my-3 mx-5">
         <center><h1 class="display-5">Peliculas Registradas</h1></center>
         <hr class="my-4">

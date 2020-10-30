@@ -33,6 +33,18 @@ function usuarios(){
 function crearUsuarioAdmin(){
     location.href = "/templates/crearUsuarioAdmin.html?usuario=" + usuario;
 }
+function cartelera(){
+    location.href = "/templates/cartelera.html?usuario=" + usuario;
+}
+function refrescarUsuario() {
+    location.href = "/templates/usuario.html?usuario=" + usuario;
+}
+function resenas(titulos) {
+    location.href = "/templates/resenasUsuario.html?usuario=" + usuario+ "&tituloA=" + titulos;
+}
+function resenasAdmin(titulos) {
+    location.href = "/templates/resenasAdmin.html?usuario=" + usuario+ "&tituloA=" + titulos;
+}
 
 inicio = function (usuario1) {
     $("#perfil").html(
