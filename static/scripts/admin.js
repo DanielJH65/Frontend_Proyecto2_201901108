@@ -104,10 +104,11 @@ function obtenerFunciones() {
     var codigoTabla = '<table class="table table-hover">' +
         '<thead>' +
         '<tr class="table-light">' +
+        '<th scope="col">Id</th>' +
         '<th scope="col">Pelicula</th>' +
         '<th scope="col">Sala</th>' +
         '<th scope="col">Hora</th>' +
-        '<th scope="col">Disponible</th>' +
+        '<th scope="col">Estado</th>' +
         '<th scope="col">Espacios Libres</th>' +
         '<th scope="col">Espacios Ocupados</th>' +
         '<th scope="col"></th>' +
@@ -125,15 +126,25 @@ function obtenerFunciones() {
             codigoTabla += '<tbody>'
             for (var i = 0; i < funciones.length; i++) {
                 codigoTabla += '<tr>'
+                codigoTabla += '<td>' + funciones[i].id + '</td>'
                 codigoTabla += '<td>' + funciones[i].pelicula + '</td>'
                 codigoTabla += '<td>' + funciones[i].sala + '</td>'
                 codigoTabla += '<td>' + funciones[i].hora + '</td>'
                 codigoTabla += '<td>' + funciones[i].disponible + '</td>'
-                codigoTabla += '<td>' + + '</td>'
-                codigoTabla += '<td>' + + '</td>'
-                codigoTabla += '<td><a class="btn btn-warning" onclick="eliminar('
+                var disponible = 0
+                var ocupado = 0
+                for(var j=0; j< funciones[i].asientos.length;j++){
+                    if(funciones[i].asientos[j].disponible == true){
+                        disponible++;
+                    }else{
+                        ocupado++;
+                    }
+                }
+                codigoTabla += '<td>' +disponible + '</td>'
+                codigoTabla += '<td>' + ocupado+ '</td>'
+                codigoTabla += '<td><a class="btn btn-warning" onclick="eliminarFuncion('
                 codigoTabla += "'"
-                codigoTabla += funciones[i].pelicula
+                codigoTabla += funciones[i].id
                 codigoTabla += "'"
                 codigoTabla += ')">Eliminar</a></td>'
                 codigoTabla += '</tr>'
@@ -163,6 +174,25 @@ function agregarFuncion() {
             alerta.error("Error, no se creo la función existe")
         }
     };
+    req.send(datos);
+}
+
+function eliminarFuncion(id) {
+    let req = new XMLHttpRequest();
+    let datos = JSON.stringify({
+        'id': id
+    })
+    req.open('POST', 'http://localhost:5000/eliminarFuncion', true);
+    req.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    req.onreadystatechange = function () {
+
+        if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
+            funciones();
+        }else if(this.readyState === XMLHttpRequest.DONE && this.status == 400) {
+            alerta.error("Error, no se elimino la función")
+        }
+    };
+
     req.send(datos);
 }
 
