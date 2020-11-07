@@ -17,10 +17,10 @@
     <title>Cine Deluxe</title>
 </head>
 
-<body onload="iniciar()">
+<body onload="iniciar() & obtenerUnUsuario()">
     <!------ Barra de Navegación ------>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand mb-0 h1" onClick="refrescar()">
+        <a class="navbar-brand mb-0 h1" onclick="refrescar()">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class=" bi bi-camera-reels-fill" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -32,14 +32,14 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="peliculas()">Peliculas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="resenasAdmin('')">Reseñas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mb-0 h4" onclick="">Funciones</a>
+                    <a class="nav-link mb-0 h4" onclick="funciones()">Funciones</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-0 h4" onclick="usuarios()">Usuarios</a>
@@ -61,34 +61,32 @@
         </div>
     </nav>
     <div id = "alerta"></div>
-
     <div class="jumbotron mx-auto my-5 " style="width: 700px;">
-        <h1 class="display-4">Modificar Pelicula</h1>
+        <h1 class="display-4">Modificar Perfil</h1>
         <hr class="my-4">
         <form>
             <fieldset>
                 <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Titulo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                    <label for="url_imagen">Url Imagen</label>
-                    <input type="url" class="form-control" id="url_imagen" placeholder="Url Imagen">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido">
                 </div>
                 <div class="form-group">
-                    <label for="puntuacion">Puntuación</label>
-                    <input type="text" class="form-control" id="puntuacion" placeholder="Puntuación">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
                 </div>
                 <div class="form-group">
-                    <label for="duracion">Duración</label>
-                    <input type="text" class="form-control" id="duracion" placeholder="Duración">
+                    <label for="contra">Contraseña</label>
+                    <input type="password" class="form-control" id="contra" placeholder="Contraseña">
                 </div>
                 <div class="form-group">
-                    <label for="sinopsis">Sinopsis</label>
-                    <textarea class="form-control" id="sinopsis" rows="5"></textarea>
+                    <label for="confirmcontra">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="confirmcontra" placeholder="Contraseña">
                 </div>
-                <br>
-                <a type="submit" class="btn btn-success  btn-lg" onclick="modificarPelicula()">Modificar Pelicula</a>
+                <a type="submit" class="btn btn-success  btn-lg" onclick="modificarUsuario()">Modificar Perfil</a><br><br>
             </fieldset>
         </form>
     </div>

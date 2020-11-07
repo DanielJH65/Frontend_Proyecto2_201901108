@@ -17,7 +17,7 @@
     <title>Cine Deluxe</title>
 </head>
 
-<body onload="iniciar() & obtenerCartelera()">
+<body onload="iniciar() & obtenerUnUsuario()">
     <!------ Barra de Navegación ------>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" onclick="refrescarUsuario()">
@@ -58,8 +58,36 @@
             </ul>
         </div>
     </nav>
-    <center><h1 class="display-5 my-4">Peliculas</h1></center>
-    <div class="my-3 mx-5" id="cartelera">
+    <div id = "alerta"></div>
+    <div class="jumbotron mx-auto my-5 " style="width: 700px;">
+        <h1 class="display-4">Modificar Perfil</h1>
+        <hr class="my-4">
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                    <label for="contra">Contraseña</label>
+                    <input type="password" class="form-control" id="contra" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                    <label for="confirmcontra">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="confirmcontra" placeholder="Contraseña">
+                </div>
+                <a type="submit" class="btn btn-success  btn-lg" onclick="modificarUsuario()">Modificar Perfil</a><br><br>
+            </fieldset>
+        </form>
     </div>
 </body>
+
 </html>

@@ -45,6 +45,12 @@ function resenas(titulos) {
 function resenasAdmin(titulos) {
     location.href = "/templates/resenasAdmin.html?usuario=" + usuario+ "&tituloA=" + titulos;
 }
+function modificarPerfilAdmin() {
+    location.href = "/templates/modificarPerfilAdmin.html?usuario=" + usuario;
+}
+function modificarPerfilUsuario() {
+    location.href = "/templates/modificarPerfilUsuario.html?usuario=" + usuario;
+}
 
 inicio = function (usuario1) {
     $("#perfil").html(
