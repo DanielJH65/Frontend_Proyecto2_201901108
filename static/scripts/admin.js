@@ -372,6 +372,28 @@ function modificarUsuario(){
     }
 }
 
+function pdfUsuarios(){
+    html2canvas(document.getElementById("tablaU")).then(function(canvas) {
+        var img = canvas.toDataURL('image/png');
+        var doc = new jsPDF({
+            orientation: "landscape"
+        });
+        doc.addImage(img, 'JPEG', 0, 0);
+        doc.save('Reporte de Usuarios.pdf');
+    });
+}
+
+function pdfPeliculas(){
+    html2canvas(document.getElementById("tablaP")).then(function(canvas) {
+        var img = canvas.toDataURL('image/png');
+        var doc = new jsPDF({
+            orientation: "landscape"
+        });
+        doc.addImage(img, 'JPEG', 0, 0);
+        doc.save('Reporte de Peliculas.pdf');
+    });
+}
+
 function seleccion() {
     var pelicula = document.getElementById("selectPelicula").value;
     resenasAdmin(pelicula)

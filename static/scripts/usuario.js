@@ -19,28 +19,59 @@ function obtenerCartelera() {
             var peliculas = JSON.parse(xhr.responseText);
             var contador = 0
             var html = '<div class="row mx-5">'
-            for (var i = 0; i < peliculas.length; i++) {
-                if (contador == 4) {
+            if (nombre == ""){
+                for (var i = 0; i < peliculas.length; i++) {
+                    if (contador == 4) {
+                        html += '</div>'
+                        html += '<div class="row mx-5">'
+                        contador = 0
+                    } else {
+                        contador++
+                    }
+                    html += '<div class="col-sm-3">'
+                    html += '<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;height:100%">'
+                    html += '<h3 class="card-header">' + peliculas[i].titulo + '</h3>'
+                    html += '<div class="card-body">'
+                    html += '<h4 class="card-title">Puntuación: ' + peliculas[i].puntuacion + '</h4>'
+                    var puntuacion = peliculas[i].puntuacion.split("/");
+                    var progreso = puntuacion[0] * 10
+                    html += '<div class="progress">'
+                    html += '<div class="progress-bar bg-warning" role="progressbar" style="width: ' + progreso + '%;" aria-valuenow="' + progreso + '" aria-valuemin="0" aria-valuemax="100"></div>'
                     html += '</div>'
-                    html += '<div class="row mx-5">'
-                    contador = 0
-                } else {
-                    contador++
+                    html += '</div>'
+                    html += '<a onclick="resenas(' + "'" + peliculas[i].titulo + "'" + ')"><img width="100%" height="350px" src="' + peliculas[i].url_imagen + '"></img></a>'
+                    html += '</div>'
+                    html += '</div>'
                 }
-                html += '<div class="col-sm-3">'
-                html += '<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;height:100%">'
-                html += '<h3 class="card-header">' + peliculas[i].titulo + '</h3>'
-                html += '<div class="card-body">'
-                html += '<h4 class="card-title">Puntuación: ' + peliculas[i].puntuacion + '</h4>'
-                var puntuacion = peliculas[i].puntuacion.split("/");
-                var progreso = puntuacion[0] * 10
-                html += '<div class="progress">'
-                html += '<div class="progress-bar bg-warning" role="progressbar" style="width: ' + progreso + '%;" aria-valuenow="' + progreso + '" aria-valuemin="0" aria-valuemax="100"></div>'
-                html += '</div>'
-                html += '</div>'
-                html += '<a onclick="resenas(' + "'" + peliculas[i].titulo + "'" + ')"><img width="100%" height="350px" src="' + peliculas[i].url_imagen + '"></img></a>'
-                html += '</div>'
-                html += '</div>'
+            }else{
+                cambio = nombre.toLowerCase()
+                for (var i = 0; i < peliculas.length; i++) {
+                    var similar = peliculas[i].titulo.toLowerCase().match(cambio)
+                    resultado('<center><h1 id="resultado" class="display-5 my-4">Busqueda relacionada a: <b>'+cambio+'</b></h1></center>')
+                    if(similar != null){
+                        if (contador == 4) {
+                            html += '</div>'
+                            html += '<div class="row mx-5">'
+                            contador = 0
+                        } else {
+                            contador++
+                        }
+                        html += '<div class="col-sm-3">'
+                        html += '<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;height:100%">'
+                        html += '<h3 class="card-header">' + peliculas[i].titulo + '</h3>'
+                        html += '<div class="card-body">'
+                        html += '<h4 class="card-title">Puntuación: ' + peliculas[i].puntuacion + '</h4>'
+                        var puntuacion = peliculas[i].puntuacion.split("/");
+                        var progreso = puntuacion[0] * 10
+                        html += '<div class="progress">'
+                        html += '<div class="progress-bar bg-warning" role="progressbar" style="width: ' + progreso + '%;" aria-valuenow="' + progreso + '" aria-valuemin="0" aria-valuemax="100"></div>'
+                        html += '</div>'
+                        html += '</div>'
+                        html += '<a onclick="resenas(' + "'" + peliculas[i].titulo + "'" + ')"><img width="100%" height="350px" src="' + peliculas[i].url_imagen + '"></img></a>'
+                        html += '</div>'
+                        html += '</div>'
+                    }
+                }
             }
             html += '</div>'
             carteleras(html)
@@ -83,7 +114,7 @@ function obtenerPelicula() {
                         html += '</div>'
                         html += '<hr class="my-4">'
                         html += '<center><h3 class="display-3 my-4">Reseñas</h3></center>'
-                        html += '<div class="row mx-5">'                  
+                        html += '<div class="row mx-5">'
                         var contador = 0
                         for (var j = 0; j < peliculas[i].resenas.length; j++) {
                             if (contador == 2) {
@@ -97,7 +128,7 @@ function obtenerPelicula() {
                             html += '<div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">'
                             html += '<h3 class="card-header">' + peliculas[i].resenas[j].usuario + '</h3>'
                             html += '<div class="card-body">'
-                            html += '<h6 class="card-text">'+peliculas[i].resenas[j].texto+'</h6>'
+                            html += '<h6 class="card-text">' + peliculas[i].resenas[j].texto + '</h6>'
                             html += '</div>'
                             html += '</div>'
                             html += '</div>'
@@ -147,7 +178,7 @@ function agregarResena(tituloB, usuarioB) {
     document.getElementById("texto").value = ""
 }
 
-function obtenerUnUsuario(){
+function obtenerUnUsuario() {
     let xhr = new XMLHttpRequest();
     var ruta = 'http://localhost:5000/obtenerUsuarios';
     xhr.open('GET', ruta);
@@ -157,7 +188,7 @@ function obtenerUnUsuario(){
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
             var usuarios = JSON.parse(xhr.responseText);
             for (var i = 0; i < usuarios.length; i++) {
-                if(usuarios[i].usuario == usuario){
+                if (usuarios[i].usuario == usuario) {
                     document.getElementById("nombre").value = usuarios[i].nombre
                     document.getElementById("apellido").value = usuarios[i].apellido
                     document.getElementById("usuario").value = usuarios[i].usuario
@@ -168,7 +199,7 @@ function obtenerUnUsuario(){
     }
 }
 
-function modificarUsuario(){
+function modificarUsuario() {
     let xhr = new XMLHttpRequest();
     var ruta = "http://localhost:5000/modificarUsuario";
     var contra = document.getElementById("contra").value;
@@ -208,11 +239,192 @@ function modificarUsuario(){
     }
 }
 
+function obtenerFunciones() {
+    let req = new XMLHttpRequest();
+    var ruta = "http://localhost:5000/obtenerFunciones";
+    req.open('GET', ruta);
+    req.send();
+
+    req.onreadystatechange = (e) => {
+        if (req.readyState === XMLHttpRequest.DONE && req.status == 200) {
+            var funciones = JSON.parse(req.responseText);
+            var html = ""
+            for (var i = 0; i < funciones.length; i++) {
+                html += '<div class="row mx-5">'
+                if (funciones[i].disponible == "Llena") {
+                    html += '<div class="card text-white bg-warning mb-3" style="height:100%;width:100%">'
+                    html += '<h3 class="card-header"><b>' + funciones[i].pelicula + '</b></h3>'
+                    html += '<div class="card-body">'
+                    html += '<div class="row mx-5">'
+                    html += '<div class="col-sm-3">'
+                    html += '<h4 class="card-title"><b>Sala:</b> ' + funciones[i].sala + '</h4>'
+                    html += '</div>'
+                    html += '<div class="col-sm-3">'
+                    html += '<h4 class="card-title"><b>Hora:</b> ' + funciones[i].hora + '</h4>'
+                    html += '</div>'
+                    html += '<div class="col-sm-5">'
+                    html += '<h4 class="card-title"><b>Función Llena</b></h4>'
+                    html += '</div>'
+                    html += '</div>'
+                } else if (funciones[i].disponible == "No Disponible") {
+                    html += '<div class="card text-white bg-secondary mb-3" style="height:100%;width:100%">'
+                    html += '<h3 class="card-header"><b>' + funciones[i].pelicula + '</b></h3>'
+                    html += '<div class="card-body">'
+                    html += '<div class="row mx-5">'
+                    html += '<div class="col-sm-3">'
+                    html += '<h4 class="card-title"><b>Sala:</b> ' + funciones[i].sala + '</h4>'
+                    html += '</div>'
+                    html += '<div class="col-sm-3">'
+                    html += '<h4 class="card-title"><b>Hora:</b> ' + funciones[i].hora + '</h4>'
+                    html += '</div>'
+                    html += '<div class="col-sm-5">'
+                    html += '<h4 class="card-title"><b>Función no disponible por la hora</b></h4>'
+                    html += '</div>'
+                    html += '</div>'
+                } else {
+                    var estado = false
+                    for (var j = 0; j < funciones[i].asientos.length; j++) {
+                        if (funciones[i].asientos[j].usuario == usuario) {
+                            estado = true
+                        }
+                    }
+                    if (estado) {
+                        html += '<div class="card text-white bg-info mb-3" style="height:100%;width:100%">'
+                        html += '<h3 class="card-header"><b>' + funciones[i].pelicula + '</b></h3>'
+                        html += '<div class="card-body">'
+                        html += '<div class="row mx-5">'
+                        html += '<div class="col-sm-3">'
+                        html += '<h4 class="card-title"><b>Sala:</b> ' + funciones[i].sala + '</h4>'
+                        html += '</div>'
+                        html += '<div class="col-sm-3">'
+                        html += '<h4 class="card-title"><b>Hora:</b> ' + funciones[i].hora + '</h4>'
+                        html += '</div>'
+                        html += '<div class="col-sm-4">'
+                        html += '<h4 class="card-title"><b>Ya aparto un lugar</b></h4>'
+                        html += '</div>'
+                        html += '</div>'
+                    } else {
+                        html += '<div class="card text-white bg-info mb-3" style="height:100%;width:100%">'
+                        html += '<h3 class="card-header"><b>' + funciones[i].pelicula + '</b></h3>'
+                        html += '<div class="card-body">'
+                        html += '<div class="row mx-5">'
+                        html += '<div class="col-sm-3">'
+                        html += '<h4 class="card-title"><b>Sala:</b> ' + funciones[i].sala + '</h4>'
+                        html += '</div>'
+                        html += '<div class="col-sm-3">'
+                        html += '<h4 class="card-title"><b>Hora:</b> ' + funciones[i].hora + '</h4>'
+                        html += '</div>'
+                        html += '<div class="col-sm-4">'
+                        html += '<a class="btn btn-primary btn-block" onclick="apartarFuncion(' + "'" + funciones[i].id + "'" + ')">Asistir</a>'
+                        html += '</div>'
+                        html += '</div>'
+                    }
+
+                }
+                html += '</div>'
+                html += '</div>'
+                html += '</div>'
+            }
+            funciones2(html)
+        }
+    }
+}
+
+function obtenerUnaFuncion() {
+    let xhr = new XMLHttpRequest();
+    var ruta = 'http://localhost:5000/obtenerUnaFuncion?id=' + id;
+    xhr.open('GET', ruta);
+    xhr.send();
+    xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
+            var funciones = JSON.parse(xhr.responseText);
+            console.log(funciones)
+            var html = `<center><h1 class="display-5 my-4">${funciones.pelicula}</h1></center>`
+            var contador = 0
+            var fila = 1
+            html += '<div class="row mx-5 my-4">'
+            html += `<a class="btn btn-light disabled btn-block" >Pantalla</a>`
+            html += '</div>'
+            html += '<div class="row mx-5 my-4">'
+            html += '<div class="col-sm-1">'
+            html += `<h1></h1>`
+            html += '</div>'
+            html += '<div class="col-sm-3">'
+            html += `<center><h1>A</h1></center>`
+            html += '</div>'
+            html += '<div class="col-sm-3">'
+            html += `<center><h1>B</h1></center>`
+            html += '</div>'
+            html += '<div class="col-sm-3">'
+            html += `<center><h1>C</h1></center>`
+            html += '</div>'
+            for (var i = 0; i < funciones.asientos.length; i++) {
+                if (contador == 0) {
+                    html += '</div>'
+                    html += '<div class="row mx-5 my-4">'
+                    html += '<div class="col-sm-1">'
+                    html += `<h1 id="fila">${fila}</h1>`
+                    html += '</div>'
+                    fila++
+                    contador++
+                } else if (contador == 2) {
+                    contador = 0
+                } else {
+                    contador++
+                }
+                if (funciones.asientos[i].disponible) {
+                    html += '<div class="col-sm-3">'
+                    html += `<a class="btn btn-info btn-block" onclick="apartar(${funciones.asientos[i].identificador})">Apartar</a>`
+                    html += '</div>'
+                } else {
+                    html += '<div class="col-sm-3">'
+                    html += `<a class="btn btn-secondary disabled btn-block">Apartado</a>`
+                    html += '</div>'
+                }
+            }
+            html += '</div>'
+            unaFuncion(html)
+        }
+    }
+}
+
+function apartar(identificador) {
+    let req = new XMLHttpRequest()
+    let datos = JSON.stringify({
+        "identificador": identificador,
+        "usuario": usuario,
+        "id": id
+    })
+    req.open('POST', 'http://localhost:5000/apartar', true);
+    req.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    req.onreadystatechange = function () {
+
+        if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
+            alerta.completo("Asiento Apartado")
+        }
+    };
+    req.send(datos);
+    setTimeout("funcionesUsuario()", 1000)
+
+}
+function busqueda() {
+    texto = document.getElementById("buscar").value
+    cartelera(texto);
+}
 carteleras = function (codigo) {
     $("#cartelera").html(codigo);
 }
 resenas2 = function (codigo) {
     $("#resenas").html(codigo);
+}
+funciones2 = function (codigo) {
+    $("#funciones").html(codigo);
+}
+unaFuncion = function (codigo) {
+    $("#unaFuncion").html(codigo);
+}
+resultado = function (codigo) {
+    $("#resultado").html(codigo);
 }
 alerta = function () { };
 alerta.completo = function (mensaje) {

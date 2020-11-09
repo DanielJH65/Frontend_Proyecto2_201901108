@@ -24,6 +24,9 @@ function modificarPeliculas(titulos) {
 function funciones(){
     location.href = "/templates/funcionesAdmin.html?usuario=" + usuario;
 }
+function funcionesUsuario(){
+    location.href = "/templates/funcionesUsuario.html?usuario=" + usuario;
+}
 function creaFuncion(){
     location.href = "/templates/crearFuncion.html?usuario=" + usuario;
 }
@@ -33,8 +36,8 @@ function usuarios(){
 function crearUsuarioAdmin(){
     location.href = "/templates/crearUsuarioAdmin.html?usuario=" + usuario;
 }
-function cartelera(){
-    location.href = "/templates/cartelera.html?usuario=" + usuario;
+function cartelera(pelicula){
+    location.href = "/templates/cartelera.html?usuario=" + usuario +"&nombre="+pelicula;
 }
 function refrescarUsuario() {
     location.href = "/templates/usuario.html?usuario=" + usuario;
@@ -51,7 +54,9 @@ function modificarPerfilAdmin() {
 function modificarPerfilUsuario() {
     location.href = "/templates/modificarPerfilUsuario.html?usuario=" + usuario;
 }
-
+function apartarFuncion(id){
+    location.href = "/templates/apartarFuncion.html?usuario=" + usuario+"&id=" + id;
+}
 inicio = function (usuario1) {
     $("#perfil").html(
         '<a class="nav-link mb-0 h4" id="perfil" href="#">' +

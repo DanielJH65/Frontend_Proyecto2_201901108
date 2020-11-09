@@ -5,3 +5,6 @@ body{
 #titulo{
     color: #ffffff;
 }
+#fila{
+    text-align: right;
+}
