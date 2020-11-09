@@ -5,6 +5,24 @@ body{
 #titulo{
     color: #ffffff;
 }
+
 #fila{
     text-align: right;
+}
+
+#imgCarousel{
+    height: 500px;
+}
+
+#ofertas{
+    width: 60%;
+}
+
+#contenido{
+    text-align: justify;
+}
+
+#contactoi{
+    width: 100px;
+    height: 100px;
 }
