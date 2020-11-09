@@ -18,17 +18,10 @@ function obtenerCartelera() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
             var peliculas = JSON.parse(xhr.responseText);
             var contador = 0
-            var html = '<div class="row mx-5">'
+            var html = '<div class="row mx-5 my-4">'
             if (nombre == ""){
-                for (var i = 0; i < peliculas.length; i++) {
-                    if (contador == 4) {
-                        html += '</div>'
-                        html += '<div class="row mx-5">'
-                        contador = 0
-                    } else {
-                        contador++
-                    }
-                    html += '<div class="col-sm-3">'
+                for (var i = 0; i < peliculas.length; i++) {                    
+                    html += '<div class="col-sm-3 my-4">'
                     html += '<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;height:100%">'
                     html += '<h3 class="card-header">' + peliculas[i].titulo + '</h3>'
                     html += '<div class="card-body">'
@@ -42,6 +35,13 @@ function obtenerCartelera() {
                     html += '<a onclick="resenas(' + "'" + peliculas[i].titulo + "'" + ')"><img width="100%" height="350px" src="' + peliculas[i].url_imagen + '"></img></a>'
                     html += '</div>'
                     html += '</div>'
+                    if (contador == 3) {
+                        html += '</div>'
+                        html += '<div class="row mx-5">'
+                        contador = 0
+                    } else {
+                        contador++
+                    }
                 }
             }else{
                 cambio = nombre.toLowerCase()
