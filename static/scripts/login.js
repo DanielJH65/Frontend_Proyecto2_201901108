@@ -1,6 +1,6 @@
 function iniciarSesion() {
     let xhr = new XMLHttpRequest();
-    ruta = 'http://localhost:5000/iniciarSesion';
+    ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/iniciarSesion';
 
     let datos = JSON.stringify({
         usuario: document.getElementById("usuario").value.toUpperCase(),

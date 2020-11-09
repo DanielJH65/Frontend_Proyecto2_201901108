@@ -1,7 +1,7 @@
 function recuperar() {
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
-    ruta = 'http://localhost:5000/recuperarContra';
+    ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/recuperarContra';
 
     let datos = JSON.stringify({
         "usuario": document.getElementById("usuario").value.toUpperCase(),

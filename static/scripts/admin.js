@@ -22,7 +22,7 @@ function obtenerPeliculas() {
         '</tr>' +
         '</thead>';
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerPeliculas';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerPeliculas';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -61,7 +61,7 @@ function eliminar(titulos) {
     let datos = JSON.stringify({
         titulo: titulos
     })
-    req.open('POST', 'http://localhost:5000/eliminarPelicula', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/eliminarPelicula', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
 
@@ -83,7 +83,7 @@ function modificarPelicula() {
         duracion: document.getElementById("duracion").value,
         sinopsis: document.getElementById("sinopsis").value,
     })
-    req.open('POST', 'http://localhost:5000/modificarPelicula', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/modificarPelicula', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
@@ -115,7 +115,7 @@ function obtenerFunciones() {
         '</tr>' +
         '</thead>';
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerFunciones';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerFunciones';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -162,7 +162,7 @@ function agregarFuncion() {
         sala: document.getElementById("sala").value,
         hora: document.getElementById("hora").value,
     })
-    req.open('POST', 'http://localhost:5000/agregarFuncion', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/agregarFuncion', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
@@ -182,7 +182,7 @@ function eliminarFuncion(id) {
     let datos = JSON.stringify({
         'id': id
     })
-    req.open('POST', 'http://localhost:5000/eliminarFuncion', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/eliminarFuncion', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
 
@@ -207,7 +207,7 @@ function obtenerUsuarios() {
         '</tr>' +
         '</thead>';
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerUsuarios';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerUsuarios';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -232,7 +232,7 @@ function obtenerUsuarios() {
 
 function obtenerResena() {
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerPeliculas';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerPeliculas';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -297,7 +297,7 @@ var cargarArchivo = function (event) {
         let datos2 = JSON.stringify({
             contenido: datos,
         })
-        req.open('POST', 'http://localhost:5000/cargaMasiva', true);
+        req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/cargaMasiva', true);
         req.setRequestHeader("Content-type", "application/json; charset=utf-8");
         req.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
@@ -313,7 +313,7 @@ var cargarArchivo = function (event) {
 
 function obtenerUnUsuario(){
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerUsuarios';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerUsuarios';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -334,7 +334,7 @@ function obtenerUnUsuario(){
 
 function modificarUsuario(){
     let xhr = new XMLHttpRequest();
-    var ruta = "http://localhost:5000/modificarUsuario";
+    var ruta = "https://backend-proyecto2-ipc1-danielj.herokuapp.com/modificarUsuario";
     var contra = document.getElementById("contra").value;
     var confirmcontra = document.getElementById("confirmcontra").value;
 

@@ -10,7 +10,7 @@ for (i = 0; i < users.length; i++) {
 function obtenerCartelera() {
 
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerPeliculas';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerPeliculas';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -81,7 +81,7 @@ function obtenerCartelera() {
 
 function obtenerPelicula() {
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerPeliculas';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerPeliculas';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -165,7 +165,7 @@ function agregarResena(tituloB, usuarioB) {
         "usuario": usuarioB,
         "texto": document.getElementById("texto").value
     })
-    req.open('POST', 'http://localhost:5000/agregarResena', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/agregarResena', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
 
@@ -180,7 +180,7 @@ function agregarResena(tituloB, usuarioB) {
 
 function obtenerUnUsuario() {
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerUsuarios';
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerUsuarios';
     xhr.open('GET', ruta);
     xhr.send();
 
@@ -201,7 +201,7 @@ function obtenerUnUsuario() {
 
 function modificarUsuario() {
     let xhr = new XMLHttpRequest();
-    var ruta = "http://localhost:5000/modificarUsuario";
+    var ruta = "https://backend-proyecto2-ipc1-danielj.herokuapp.com/modificarUsuario";
     var contra = document.getElementById("contra").value;
     var confirmcontra = document.getElementById("confirmcontra").value;
 
@@ -241,7 +241,7 @@ function modificarUsuario() {
 
 function obtenerFunciones() {
     let req = new XMLHttpRequest();
-    var ruta = "http://localhost:5000/obtenerFunciones";
+    var ruta = "https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerFunciones";
     req.open('GET', ruta);
     req.send();
 
@@ -332,7 +332,7 @@ function obtenerFunciones() {
 
 function obtenerUnaFuncion() {
     let xhr = new XMLHttpRequest();
-    var ruta = 'http://localhost:5000/obtenerUnaFuncion?id=' + id;
+    var ruta = 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/obtenerUnaFuncion?id=' + id;
     xhr.open('GET', ruta);
     xhr.send();
     xhr.onreadystatechange = (e) => {
@@ -395,7 +395,7 @@ function apartar(identificador) {
         "usuario": usuario,
         "id": id
     })
-    req.open('POST', 'http://localhost:5000/apartar', true);
+    req.open('POST', 'https://backend-proyecto2-ipc1-danielj.herokuapp.com/apartar', true);
     req.setRequestHeader("Content-type", "application/json; charset=utf-8");
     req.onreadystatechange = function () {
 

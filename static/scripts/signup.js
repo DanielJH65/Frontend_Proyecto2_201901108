@@ -1,7 +1,7 @@
 function agregarUsuario(tipo) {
 
     let xhr = new XMLHttpRequest();
-    var ruta = "http://localhost:5000/crearUsuario";
+    var ruta = "https://backend-proyecto2-ipc1-danielj.herokuapp.com/crearUsuario";
     var contra = document.getElementById("contra").value;
     var confirmcontra = document.getElementById("confirmcontra").value;
 
